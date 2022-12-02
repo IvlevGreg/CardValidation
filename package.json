@@ -1,12 +1,16 @@
 {
+  "name": "paymentpage",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "build": "webpack --mode=production --env prod",
     "dev": "webpack-dev-server --mode=development --open --live-reload",
     "test-build": "webpack-dev-server --mode=production --open",
     "test": "jest"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ivlev Greg",
+  "homepage": "https://ivlevgreg.github.io/PaymentPage",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.19.0",
@@ -20,6 +24,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-webpack-plugin": "^3.2.0",
+    "gh-pages": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
     "identity-obj-proxy": "^3.0.0",
     "image-minimizer-webpack-plugin": "^3.3.0",
