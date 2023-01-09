@@ -42,9 +42,9 @@ const jsLoaders = (isPod) => {
     },
   ]
 
-  if (!isPod) {
-    loaders.push('eslint-loader')
-  }
+  // if (!isPod) {
+
+  // }
 
   return loaders
 }

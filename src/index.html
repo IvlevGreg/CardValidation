@@ -13,15 +13,33 @@
 <body>
   <div id="payment-form-container" class="container ">
     <form id="payment-form" class="payment-form">
-      <label class="payment-form__label mb-3">
+      <label class="payment-form__label mb-4">
         <div id="logo-container"></div>
         <input type="text" class="payment-form__input form-control " placeholder="Номер карты" name="number">
+        <div class="invalid-tooltip">
+          Проверьте номер карты
+        </div>
       </label>
-      <div class="mb-3 payment-form__double">
-        <input type="text" class="payment-form__input form-control" placeholder="Месяц/год" name="date">
-        <input type="text" class="payment-form__input form-control" placeholder="cvv код" name="cvv">
+      <div class="mb-4 payment-form__double">
+        <label class="payment-form__label">
+          <input type="text" class="payment-form__input form-control" placeholder="Месяц/год" name="date">
+          <div class="invalid-tooltip">
+            Проверьте дату
+          </div>
+        </label>
+        <label class="payment-form__label">
+          <input type="text" class="payment-form__input form-control" placeholder="cvv код" name="cvv">
+          <div class="invalid-tooltip">
+            Проверьте CVV
+          </div>
+        </label>
       </div>
-      <input type="email" class="payment-form__input form-control mb-4" placeholder="Электронная почта" name="email">
+      <label class="payment-form__label  mb-4">
+        <input type="email" class="payment-form__input form-control" placeholder="Электронная почта" name="email">
+        <div class="invalid-tooltip">
+          Проверьте почту
+        </div>
+      </label>
       <button id="payment-form-btn" class="btn btn-primary payment-form_btn" disabled>Оплатить</button>
     </form>
   </div>
