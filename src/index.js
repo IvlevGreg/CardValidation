@@ -1,6 +1,11 @@
 import 'babel-polyfill'
 
-import { isValidCardNumber, isValidDate, isValidCVV, isValidEmail } from './validation.js'
+import {
+  validationCardNumber,
+  validationDate,
+  validationCVV,
+  validationEmail,
+} from './validation.js'
 import IMask from 'imask'
 import { el, mount } from 'redom'
 const valid = require('card-validator')
@@ -96,19 +101,19 @@ inputCardNumber.addEventListener('input', () => {
 })
 
 inputCardNumber.addEventListener('blur', () => {
-  inputValidation(isValidCardNumber(maskCardNumber.unmaskedValue), inputCardNumber)
+  inputValidation(validationCardNumber(maskCardNumber.unmaskedValue), inputCardNumber)
 })
 
 inputCardDate.addEventListener('blur', () => {
-  inputValidation(isValidDate(inputCardDate.value), inputCardDate)
+  inputValidation(validationDate(inputCardDate.value), inputCardDate)
 })
 
 inputCardCVV.addEventListener('blur', () => {
-  inputValidation(isValidCVV(inputCardCVV.value), inputCardCVV)
+  inputValidation(validationCVV(inputCardCVV.value), inputCardCVV)
 })
 
 inputCardEmail.addEventListener('blur', () => {
-  inputValidation(isValidEmail(inputCardEmail.value), inputCardEmail)
+  inputValidation(validationEmail(inputCardEmail.value), inputCardEmail)
 })
 
 inputsAll.forEach((input) => {
@@ -117,16 +122,21 @@ inputsAll.forEach((input) => {
   })
 })
 
-function inputValidation(isValid, input) {
+function inputValidation([isValid, invalidText], input) {
+  const textTag = input.nextElementSibling
+
   if (isValid) {
     inputStatusMap.delete(input.name)
     checkFormCompleted()
+    textTag.textContent = 'Проверьте поле'
   } else {
     addInvalidClass(input)
     addFalseInMap(input)
     formBtn.disabled = true
+    textTag.textContent = invalidText
   }
 }
+
 function addInvalidClass(input) {
   input.classList.add('is-invalid')
 }
@@ -169,7 +179,7 @@ function checkFormCompleted() {
   if (inputStatusMap.size === 0) {
     formBtn.disabled = false
   } else {
-    formBtn.disabled = true
+    // formBtn.disabled = true
   }
 }
 
@@ -177,4 +187,6 @@ function addFalseInMap(input) {
   inputStatusMap.set(input.name, false)
 }
 
-form.addEventListener('submit', (e) => e.preventDefault())
+form.addEventListener('submit', () => {
+  alert('Перенаправление на страницу банка для ввода смс кода')
+})
